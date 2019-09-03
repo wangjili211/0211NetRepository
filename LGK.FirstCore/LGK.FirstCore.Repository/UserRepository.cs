@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace LGK.FirstCore.Repository
 {
 
-    public class UserRepository :BaseRepository<User>, IUserRepository
+    public class UserRepository :BaseRepository<Userss>, IUserRepository
     {
        
     }

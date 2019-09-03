@@ -6,13 +6,6 @@ namespace LGK.FirstCore.Model
 {
     public abstract class BaseEntity
     {
-        //你好
-
-        //wohenhao
-
-        //yiuuk
-        //sdfsdf
-        //nihaoooooooooo
-        ///李国凯是个傻子
+       
     }
 }
