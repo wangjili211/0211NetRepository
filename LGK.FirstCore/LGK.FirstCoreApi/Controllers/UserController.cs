@@ -33,9 +33,9 @@ namespace LGK.FirstCoreApi.Controllers
 
         // GET api/values/5
         [HttpPost]
-        public int AddUser(User entity)
+        public int AddUser(Userss entity)
         {
-            User mModel = new User();
+            Userss mModel = new Userss();
             Role rModel = new Role();
 
             userRepository.Insert(entity);
