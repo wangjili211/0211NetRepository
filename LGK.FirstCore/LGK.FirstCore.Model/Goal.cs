@@ -9,6 +9,7 @@ namespace LGK.FirstCore.Model
     /// <summary>
     /// 目标表
     /// </summary>
+    /// //O0o〇°
     [Table("Goal")]
     public  class Goal
 
