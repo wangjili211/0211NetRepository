@@ -7,5 +7,7 @@ namespace LGK.FirstCore.Model
     public abstract class BaseEntity
     {
         //你好
+
+        //wohenhao
     }
 }
