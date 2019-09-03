@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "AddUser";
+}
+
+
+
+<h2>AddUser</h2>
+<body>
+    <div id="app">
+        <table v-show="UserList.length">
+            <tr>
+                <td>用户名</td>
+                <td><input id="Text1" type="text" v-model="UserName" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#" v-on:click="addUser(UserName)">添加</a>
+                    @*<input id="Button1" type="button" value="添加"  v-on:click='addUser(Name,Pwd,Age)'/>*@
+                </td>
+            </tr>
+              
+
+        </table>
+    </div>
+</body>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            UserList: ['董事', '部门主管', '部门经理',"部门主管"],
+            UserName: ""
+           
+        },
+        methods: {
+            addUser: function (UserName) {
+                axios.post('@Url.Action("AddUser", "User")', { User: { UserName: this.UserName } }).then(
+                    (response) => {
+                        alert("添加成功");
+                    },
+                    (response) => {
+                        alert(response.status);
+                    }
+                ).catch(function (response) {
+                    alert(response);
+                });
+            },
+        },
+
+    });
+</script>
+
+
