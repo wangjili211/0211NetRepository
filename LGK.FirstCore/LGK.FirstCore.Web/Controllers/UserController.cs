@@ -51,7 +51,10 @@ namespace LGK.FirstCore.Web.Controllers
             userRepository.Delete(1);
             return 1;
         }
- 
+        public ActionResult acc()
+        {
+            return View();
+        }
       
     }
 }
