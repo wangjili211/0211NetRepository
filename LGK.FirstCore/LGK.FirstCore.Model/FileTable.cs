@@ -6,6 +6,9 @@ namespace LGK.FirstCore.Model
 {
   public  class FileTable
     {
+        /// <summary>
+        /// 文件表
+        /// </summary>
         public int Id { get; set; }
         /// <summary>
         /// 名称

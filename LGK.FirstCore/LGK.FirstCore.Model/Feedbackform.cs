@@ -7,7 +7,7 @@ namespace LGK.FirstCore.Model
   public  class Feedbackform
     {
         /// <summary>
-        /// 
+        /// 反馈表
         /// </summary>
         public int Id { get; set; }
         /// <summary>
