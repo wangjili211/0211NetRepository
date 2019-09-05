@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LGK.FirstCore.Model
 {
+    /// <summary>
+    /// 目标状态表
+    /// </summary>
   public  class Targetstatustable
     {
         public int Id { get; set; }

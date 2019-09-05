@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LGK.FirstCore.Model
 {
+    /// <summary>
+    /// 指标类型类别表
+    /// </summary>
   public  class Indextypecategorytable
     {
         public int Id { get; set; }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LGK.FirstCore.Model\LGK.FirstCore.Model.csproj" />
   </ItemGroup>
 

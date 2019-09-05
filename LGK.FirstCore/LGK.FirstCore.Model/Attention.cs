@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LGK.FirstCore.Model
 {
+    /// <summary>
+    /// 关注表
+    /// </summary>
   public  class Attention
     {
         public int Id { get; set; }
