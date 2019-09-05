@@ -29,9 +29,9 @@ namespace LGK.FirstCore.Web.Controllers
         }
 
         [HttpPost]
-        public int AddUser(User entity)
+        public int AddUser(Userss entity)
         {
-            var user = new User
+            var user = new Userss
             {
                 UserId = 1,
                 UserName = "二狗"
@@ -51,7 +51,6 @@ namespace LGK.FirstCore.Web.Controllers
             userRepository.Delete(1);
             return 1;
         }
- 
       
     }
 }

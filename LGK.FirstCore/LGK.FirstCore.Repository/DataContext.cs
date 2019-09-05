@@ -18,14 +18,14 @@ namespace LGK.FirstCore.Repository
         {
 
         }
-        public DbSet<User> UserModelset { get; set; }
+        public DbSet<Userss> UserModelset { get; set; }
         public DbSet<Role> RoleModelset { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("Data Source=127.0.0.1;Initial Catalog=projectmanage;User ID=root;pwd=1234");
+                optionsBuilder.UseMySQL("Data Source=127.0.0.1;Initial Catalog=fourgroupfthestrongest;User ID=Li;pwd=1");
             }
         }
 
