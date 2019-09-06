@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddUser</title>
+</head>
+<body>
+    <div id="app">
+        <table v-show="RoleList.length">
+            <tr>
+                <td>姓名</td>
+                <td><input id="Text1" type="text" v-model="RoleName" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#" v-on:click="addUser(RoleName)">添加</a>
+                    @*<input id="Button1" type="button" value="添加"  v-on:click='addUser(Name,Pwd,Age)'/>*@
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            RoleList: ['董事'],
+            RoleName:""
+        },
+        methods: {
+            addUser: function (RoleName) {
+                axios.post('@Url.Action("Add", "Role")', { role: { RoleName: this.RoleName } }).then(
+                    (response) => {
+                        alert("添加成功");
+                    },
+                    (response) => {
+                        alert(response.status);
+                    }
+                ).catch(function (response) {
+                    alert(response);
+                });
+            },
+        },
+
+    });
+</script>
