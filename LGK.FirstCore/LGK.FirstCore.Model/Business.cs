@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace LGK.FirstCore.Model
@@ -8,6 +10,7 @@ namespace LGK.FirstCore.Model
     /// <summary>
     /// 业务表
     /// </summary>
+    
     public class Business
     {
         [Key]
