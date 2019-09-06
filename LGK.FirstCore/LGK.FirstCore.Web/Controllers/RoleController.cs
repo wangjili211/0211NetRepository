@@ -40,5 +40,10 @@ namespace LGK.FirstCore.Web.Controllers
             return View();
         }
 
+        public ActionResult UpdateUser()
+        {
+            return View();
+        }
+
     }
 }
