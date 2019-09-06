@@ -10,6 +10,7 @@ namespace LGK.FirstCore.Model
     /// <summary>
     /// 业务表
     /// </summary>
+    
     public class Business
     {
         [Key]
