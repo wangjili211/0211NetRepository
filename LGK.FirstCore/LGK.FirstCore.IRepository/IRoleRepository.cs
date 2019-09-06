@@ -7,6 +7,7 @@ namespace LGK.FirstCore.IRepository
 {
     public interface IRoleRepository: IBaseRepository<Role>
     {
+
     }
 
 }
