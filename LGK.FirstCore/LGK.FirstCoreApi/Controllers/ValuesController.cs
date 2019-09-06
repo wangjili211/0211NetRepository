@@ -28,10 +28,9 @@ namespace LGK.FirstCoreApi.Controllers
         }
 
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
+
+        //public ActionResult<IEnumerable<string>> Get()
+        //{
 
             //var user = new User {
             //    UserName="test"
@@ -45,7 +44,7 @@ namespace LGK.FirstCoreApi.Controllers
 
             //i = userRepository.Delete(2);
 
-            return new string[] { "value1", "value2" };
+            //return new string[] { "value1", "value2" };
         }
-    }
-}
+       }
+    

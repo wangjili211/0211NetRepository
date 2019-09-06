@@ -6,6 +6,7 @@ using LGK.FirstCore.Model;
 using LGK.FirstCore.Repository;
 using LGK.FirstCore.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LGK.FirstCore.Web.Controllers
 {
@@ -31,18 +32,13 @@ namespace LGK.FirstCore.Web.Controllers
         [HttpPost]
         public int AddUser(Userss entity)
         {
-            var user = new Userss
-            {
-                UserId = 1,
-                UserName = "二狗"
-            };
-            userRepository.Insert(entity);
-            return 1;
+            var i = userRepository.Insert(entity);
+            return  i;
         }
 
         public ActionResult AddUser()
         {
-            return View();
+            return View(); 
         }
 
         [HttpPost]

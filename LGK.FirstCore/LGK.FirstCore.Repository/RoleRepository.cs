@@ -10,6 +10,6 @@ namespace LGK.FirstCore.Repository
 {
     public class RoleRepository : BaseRepository<Role>, IRoleRepository
     {
-       
+
     }
 }
