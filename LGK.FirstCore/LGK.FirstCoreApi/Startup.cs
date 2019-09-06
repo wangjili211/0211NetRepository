@@ -30,7 +30,7 @@ namespace LGK.FirstCoreApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<IUserRepository, UserRepository>();   //注册数据访问层 接口与实现类 关系
-            services.AddScoped<IRoleRepository, RoleRepository>();   //注册数据访问层 接口与实现类  ++ ++  === 关系 +++ 扈 泽超+为什么呢还看见藕丝；i+易冬冬
+            services.AddScoped<IRoleRepository, RoleRepository>();   //注册数据访问层 接口与实现类  ++ ++  === 关系 +++ 扈 泽超+为什么呢还看见藕丝dddd；i
 
 
             //注册跨域服务，允许所有来源
