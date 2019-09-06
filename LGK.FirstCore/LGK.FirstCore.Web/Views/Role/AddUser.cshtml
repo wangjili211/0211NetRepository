@@ -4,6 +4,8 @@
 }
 
 <!DOCTYPE html>
+<script src="~/axios.js"></script>
+<script src="~/vue.js"></script>
 
 <html>
 <head>
@@ -37,7 +39,7 @@
         },
         methods: {
             addUser: function (RoleName) {
-                axios.post('@Url.Action("Add", "Role")', { role: { RoleName: this.RoleName } }).then(
+                axios.post('http://localhost:52141/api/Role/AddUser'), { Name: { RoleName: this.RoleName }}.then(
                     (response) => {
                         alert("添加成功");
                     },
