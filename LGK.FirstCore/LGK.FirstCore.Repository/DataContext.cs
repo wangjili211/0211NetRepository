@@ -16,16 +16,16 @@ namespace LGK.FirstCore.Repository
         }
         public DataContext(DbContextOptions options) : base(options)
         {
-       
+         
         }
-        public DbSet<Userss> UserModelset { get; set; }
-        public DbSet<Role> RoleModelset { get; set; }
+        public DbSet<Userss> Userss { get; set; }
+        public DbSet<Role> Role { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("Data Source=127.0.0.1;Initial Catalog=projectmanage;User ID=Li;pwd=1");
+                optionsBuilder.UseMySQL("Data Source=169.254.46.35;Initial Catalog=fortefortissimo;User ID=Dang;pwd=1");
             }
         }
 

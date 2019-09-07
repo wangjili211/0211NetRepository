@@ -12,7 +12,6 @@ namespace LGK.FirstCore.Web.Controllers
 {
     public class RoleController : Controller
     {
-        /// </summary>
         private readonly IRoleRepository roleRepository;
         /// <summary>
         /// 构造函数注入
@@ -24,13 +23,13 @@ namespace LGK.FirstCore.Web.Controllers
         }
 
         [HttpPost]
-        public int AddUser(Role entity)
+        public int AddRole(Role entity)
         {
             var i = roleRepository.Insert(entity);
             return i;
-        }
+        } 
 
-        public ActionResult AddUser()
+        public ActionResult AddRole()
         {
             return View();
         }

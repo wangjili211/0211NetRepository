@@ -29,22 +29,24 @@ namespace LGK.FirstCoreApi.Controllers
 
 
 
-        //public ActionResult<IEnumerable<string>> Get()
-        //{
+        public ActionResult<IEnumerable<string>> Get()
+        {
 
-            //var user = new User {
-            //    UserName="test"
-            //};
-            //var i = userRepository.Insert(user);
+            var user = new Userss
+            {
+                UserName = "test"
+            };
+            var i = userRepository.Insert(user);
 
 
-            //var tmpUser = userRepository.GetModelById(2);
-            //tmpUser.UserName = "test222";
-            //i = userRepository.Update(tmpUser);
+            var tmpUser = userRepository.GetModelById(4);
+            tmpUser.UserName = "test222";
+            i = userRepository.Update(tmpUser);
 
-            //i = userRepository.Delete(2);
+            i = userRepository.Delete(4);
 
-            //return new string[] { "value1", "value2" };
+            return new string[] { "value1", "value2" };
         }
-       }
+    }
+}
     
