@@ -31,15 +31,18 @@
 </body>
 </html>
 <script type="text/javascript">
+    
     var vm = new Vue({
         el: "#app",
         data: {
             RoleList: ['董事'],
-            RoleName:""
+            RoleName: ""
         },
         methods: {
             addUser: function (RoleName) {
-                axios.post('http://localhost:52141/api/Role/AddUser'), { Name: { RoleName: this.RoleName }}.then(
+                var params = new URLSearchParams();
+                params.append("RoleName", RoleName);
+                axios.post("http://localhost:52173/Role/AddRole", params).then(
                     (response) => {
                         alert("添加成功");
                     },
@@ -51,6 +54,8 @@
                 });
             },
         },
-
     });
 </script>
+
+
+
