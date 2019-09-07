@@ -37,7 +37,12 @@ namespace LGK.FirstCoreApi.Controllers
         }
 
 
-        //public int DeleteUser(Role entity)
+        public int DeleteUser(Role Id)
+        {
+            Role dmodel = new Role();          
+            roleRepository.Delete(Id);
+            return 1;
+        }
 
 
     }

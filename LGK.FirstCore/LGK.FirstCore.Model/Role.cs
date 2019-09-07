@@ -13,6 +13,6 @@ namespace LGK.FirstCore.Model
         public string RoleName { get; set; }
 
 
-        //li
+
     }
 }
