@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LGK.FirstCore.IRepository;
+using LGK.FirstCore.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +31,8 @@ namespace LGK.FirstCore.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddScoped<IUserRepository, UserRepository>();   //注册数据访问层 接口与实现类 关系
+            services.AddScoped<IRoleRepository, RoleRepository>();   //注册数据访问层 接口与实现类 关系
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -53,7 +56,7 @@ namespace LGK.FirstCore.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Role}/{action=Index}/{id?}");
             });
         }
     }
