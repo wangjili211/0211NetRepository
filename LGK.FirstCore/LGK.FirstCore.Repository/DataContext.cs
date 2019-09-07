@@ -19,7 +19,7 @@ namespace LGK.FirstCore.Repository
        
         }
         public DbSet<Userss> UserModelset { get; set; }
-        public DbSet<Role> RoleModelset { get; set; }
+        public DbSet<Role> RoleModelset { get; set; }  
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
