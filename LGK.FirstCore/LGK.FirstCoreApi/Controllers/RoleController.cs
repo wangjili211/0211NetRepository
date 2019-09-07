@@ -31,5 +31,10 @@ namespace LGK.FirstCoreApi.Controllers
             var i = roleRepository.Insert(entity);
             return i;
         }
+
+
+        //public int DeleteUser(Role entity)
+
+
     }
 }
