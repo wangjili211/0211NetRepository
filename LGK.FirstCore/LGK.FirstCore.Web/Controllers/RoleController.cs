@@ -22,7 +22,7 @@ namespace LGK.FirstCore.Web.Controllers
         {
             roleRepository = _roleRepository;
         }
-      
+
         [HttpPost]
         public int AddUser(Role entity)
         {
@@ -40,6 +40,14 @@ namespace LGK.FirstCore.Web.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public Role UpdateUser(int Id)
+        {
+            Role i = roleRepository.GetModelById(Id);
+            return i;
+
+        }
         public ActionResult UpdateUser()
         {
             return View();
