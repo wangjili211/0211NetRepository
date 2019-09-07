@@ -6,6 +6,8 @@ using LGK.FirstCore.IRepository;
 using LGK.FirstCore.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using LGK.FirstCore.Repository;
+using System.Collections;
 
 namespace LGK.FirstCoreApi.Controllers
 {
@@ -31,11 +33,22 @@ namespace LGK.FirstCoreApi.Controllers
         public int AddUser(Role entity)
         {
             Role rModel = new Role();
-
+              
             roleRepository.Insert(entity);
             return 1;
         }
-
+        /// <summary>
+        /// 显示分页
+        /// </summary>
+        /// <param name="announcementform"></param> 
+        /// <returns></returns>
+        /// .
+        //[HttpGet]
+        //public PageModel<Role> Index(string Name = "", int pageIndex = 0, int pageSize = 3)
+        //{
+        //   var list  = Convert.ToInt32(roleRepository.Entities(Name, pageIndex, pageSize))  ;
+        //   return list;
+        //}
 
         //public int DeleteUser(Role entity)
 
