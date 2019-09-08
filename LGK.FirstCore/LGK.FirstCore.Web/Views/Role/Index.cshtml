@@ -1,0 +1,224 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/vue-resource.js"></script>
+    <script src="~/Scripts/axios.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <h2>角色</h2><input id="RoleInfoNames" type="text" placeholder="请输入角色名称" />
+        <button id="Button1" class="btn btn-primary btn-2g" onclick="getRoles()">查询</button>
+        <button class="btn btn-primary btn-2g" data-toggle="modal" data-target="#myModal">添加</button>
+    </div>
+    <!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">角色添加</h4>
+            </div>
+            <div class="modal-body">
+
+                <div id="app">
+
+                    <table class="table table-hover">
+
+                        <tr>
+                            <td>角色名称</td>
+                            <td>
+                                <input type="hidden" id="Id" />
+                                <input id="RoleInfoName" type="text" v-model="s.RoleInfoName">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <button v-on:click="AddRole()"> 添加</button>
+                                <button type="button" data-dismiss="modal">关闭</button>
+                            </td>
+                            <td>
+                                <button v-on:click="Save()"> 修改</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div  id="myView">
+    <table>
+        <tr>
+            <td>角色姓名</td>
+        </tr>
+        <tr v-for="item in RoleList" :key="item.RoleInfoId">
+            <td>{{item.RoleName}}</td>
+            <td><a href="#" class="btn btn-primary btn-2g" v-on:click="Delete(item.RoleInfoId)">删除</a></td>
+            <td> <button class="btn btn-primary btn-2g" data-toggle="modal" v-on:click="Upt(item.RoleInfoId)">修改</button></td>
+        </tr>
+    </table>
+    
+    @*分页*@
+    <div class="pager">
+        <template v-if="pageindex===1">
+            <input id="bt1" v-on:click="pageindex=1;getRoles();" disabled="disabled" style="color:darkgray" type="button" value="首页" />
+            <input id="bt2" v-on:click="pageindex--;getRoles();" disabled="disabled" style="color:darkgray" type="button" value="上一页" />
+        </template>
+        <template v-else-if="pageindex!=1">
+            <input id="bt1" v-on:click="pageindex=1;getRoles();" type="button" value="首页" />
+            <input id="bt2" v-on:click="pageindex--;getRoles();" type="button" value="上一页" />
+        </template>
+        <template v-if="pageindex===pagecount">
+            <input id="bt3" v-on:click="pageindex++;getRoles();" disabled="disabled" style="color:darkgray" type="button" value="下一页" />
+            <input id="bt4" v-on:click="pageindex=pagecount;getRoles();" disabled="disabled" style="color:darkgray" type="button" value="尾页" />
+        </template>
+        <template v-if="pageindex!=pagecount">
+            <input id="bt3" v-on:click="pageindex++;getRoles();" type="button" value="下一页" />
+            <input id="bt4" v-on:click="pageindex=pagecount;getRoles();" type="button" value="尾页" />
+        </template>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var myModel = { RoleList: [] };
+    var myViewModel = new Vue({
+        el: '#myView',
+        data: myModel,
+        methods:
+        {
+            Delete(RoleInfoId) {
+                if (confirm("确认删除吗？")) {
+                    alert(RoleInfoId)
+                    this.$http.get('http://localhost:52141/api/values/SysManagement/RoleInfosDel/?RoleInfoId=' + RoleInfoId).then(result => {
+                        var result = result.body;
+                        if (result.code == 200) {
+
+                            alert('删除失败')
+                        }
+                        else {
+                            alert('删除成功')
+
+                            location.reload()
+                        }
+                    })
+                }
+            },
+            Upt(RoleInfoId) {
+                //反填数据
+                $("#Id").val(RoleInfoId);
+                $.ajax({
+                    url: 'http://localhost:8005/api/SysManagement/SetRoleInfo?RoleInfoId=' + RoleInfoId,
+                    type: 'get',
+                    dataType: "json",
+                    success: function (data) {
+                        $("#RoleInfoName").val(data[0].RoleInfoName);
+                        $("#RoleInfoDesc").val(data[0].RoleInfoDesc);
+                    }
+                })
+                $("#myModal").modal();
+            }
+        },
+    })
+    //显示
+    $(function () {
+        $.ajax({
+            url: "http://localhost:8005/api/SysManagement/GetRoleInfos",
+            type: "get",
+            dataType: 'json',
+            timeout: 3000,
+            success: function (result) {
+                myViewModel.RoleList = result
+            },
+            error: function () {
+            },
+        })
+    });
+    //var vm = new Vue({
+    //    el: '#myView',
+    //    data: {
+    //        myModal,
+    //        pageindex: 1,
+    //        pagesize: 5,
+    //        pagecount: 0
+    //    },
+    //    mounted() { this.getRoles(); },
+    //    methods: {
+    //        getRoles: function () {
+    //            $.ajax({
+    //                url: 'http://localhost:8005/api/SysManagement/GetRoleInfos',
+    //                type: 'get',
+    //                data: { pageindex: this.pageindex, pagesize: this.pagesize },
+    //                dataType: 'json',
+    //                success: function (data) {
+    //                    vm.RoleList = [];
+    //                    showdata = eval("(" + data.Data + ")");
+    //                    vm.RoleList = showdata;
+    //                    vm.pagecount = Math.ceil(data.Count / vm.pagesize);
+    //                }
+    //            })
+    //        }
+    //    }
+    //})
+    //添加
+
+    var vm = new Vue({
+        el: '#app',
+        type: "post",
+        data: {
+            s: {}
+        },
+        methods: {
+            //修改方法
+            Save: function () {
+                var id = $("#Id").val();
+                vm.s.RoleId = id;
+                alert(id)
+                axios.post('http://localhost:8005/api/SysManagement/RoleInfosUpd', this.s).then((response) => { alert('修改成功'); $("#id").val(''); }).catch(function (response) { alert('修改失败') })
+                location.reload()
+            },
+            //添加方法
+            AddRole: function () {
+                //this.s.RoleInfoDesc = this.RoleInfoDesc;
+
+                axios.post('http://localhost:8005/api/SysManagement/RoleInfosAdd', this.s).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('失败') })
+            },
+        },
+
+    })
+    //查询
+    $(function () { getRoles() })
+    function getRoles() {
+        var RoleInfoName = $("#RoleInfoNames").val()
+        $.ajax({
+
+            url: 'http://localhost:8005/api/SysManagement/GetRoleInfos',
+
+            type: "get",
+            data: { RoleInfoName: RoleInfoName },
+            dataType: 'json',
+            timeout: 3000,
+            success: function (result) {
+                myViewModel.RoleList = result;
+            },
+            eroor: function () {
+                alert('服务器忙')
+            }
+        })
+
+    }
+</script>

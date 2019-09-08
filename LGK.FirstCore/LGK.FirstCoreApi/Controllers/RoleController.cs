@@ -31,10 +31,15 @@ namespace LGK.FirstCoreApi.Controllers
             var i = roleRepository.Insert(entity);
             return i;
         }
-        public IEnumerable<Role> GetAll()
+
+
+        public int DeleteUser(Role Id)
         {
-            return roleRepository.Entities;
+            Role dmodel = new Role();          
+            roleRepository.Delete(Id);
+            return 1;
         }
+
 
     }
 }
