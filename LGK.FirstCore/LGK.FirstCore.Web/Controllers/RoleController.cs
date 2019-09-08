@@ -40,14 +40,14 @@ namespace LGK.FirstCore.Web.Controllers
         }
 
 
-        [HttpPost]
-        public Role UpdateUser(int Id)
+        [HttpPut]
+        public Role UpdateRole(int Id)
         {
             Role i = roleRepository.GetModelById(Id);
             return i;
 
         }
-        public ActionResult UpdateUser()
+        public ActionResult UpdateRole()
         {
             return View();
         }
