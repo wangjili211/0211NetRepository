@@ -13,9 +13,7 @@ namespace LGK.FirstCoreApi.Controllers
     [ApiController]
     public class RoleController : ControllerBase
     {
-        /// <summary>
-        /// 定义私有变量
-        /// </summary>
+      
         private readonly IRoleRepository roleRepository;
         /// <summary>
         /// 构造函数注入
@@ -28,16 +26,19 @@ namespace LGK.FirstCoreApi.Controllers
 
         // GET api/values/5
         [HttpPost]
-        public int AddUser(Role entity)
-        {
-            Role rModel = new Role();
-
-            roleRepository.Insert(entity);
-            return 1;
+        public int AddRole(Role entity)
+        { 
+            var i = roleRepository.Insert(entity);
+            return i;
         }
 
 
-        //public int DeleteUser(Role entity)
+        public int DeleteUser(Role Id)
+        {
+            Role dmodel = new Role();          
+            roleRepository.Delete(Id);
+            return 1;
+        }
 
 
     }
