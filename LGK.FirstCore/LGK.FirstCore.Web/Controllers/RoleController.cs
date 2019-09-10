@@ -51,7 +51,7 @@ namespace LGK.FirstCore.Web.Controllers
         {
             return View();
         }
-
+        [HttpPost]
         public int DeleteRole(Role RoleId)
         {
             int i = roleRepository.Delete(RoleId);
