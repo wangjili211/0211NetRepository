@@ -23,6 +23,9 @@ namespace LGK.FirstCore.Web.Controllers
         //    roleRepository = _roleRepository;
         //}
 
+
+      
+
         public JsonResult Adds(Role role)
         {
             string jsonm = Newtonsoft.Json.JsonConvert.SerializeObject(role);
@@ -38,9 +41,10 @@ namespace LGK.FirstCore.Web.Controllers
         public ActionResult Index()
         {
             return View();
-        } 
+        }
 
        
+
         public Role UpdateRole(int Id)
         {
             Role i = roleRepository.GetModelById(Id);

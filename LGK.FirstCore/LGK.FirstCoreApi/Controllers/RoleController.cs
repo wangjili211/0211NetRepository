@@ -33,12 +33,8 @@ namespace LGK.FirstCoreApi.Controllers
             var i = roleRepository.Insert(entity); 
             return i;
         }
-        [HttpDelete]
-        public int DeleteUser(Role Id)
-        {            
-            var i= roleRepository.Delete(Id);
-            return i;
-        }
+
+       
 
         [HttpGet]
         public List<Role> GetAll()

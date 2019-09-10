@@ -12,10 +12,9 @@ namespace LGK.FirstCore.IRepository
         /// 获取数据集合
         /// </summary>
         DbSet<T> Entities { get; }
+
         //显示
         List<T> GetRole();
-
-
 
         /// <summary>
         /// 增加单个实体
@@ -23,7 +22,6 @@ namespace LGK.FirstCore.IRepository
         /// <param name="entity"></param>
         /// <returns></returns>
         /// 
-
         int Insert(T entity);
 
     //增加多个实体
