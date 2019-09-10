@@ -32,14 +32,23 @@ namespace LGK.FirstCoreApi.Controllers
             return i;
         }
 
-
+        [HttpDelete]
         public int DeleteUser(Role Id)
         {
             Role dmodel = new Role();          
             roleRepository.Delete(Id);
             return 1;
         }
-
+        // <summary>
+        // 角色显示
+        // </summary>
+        // <returns></returns>
+        [HttpGet]
+        public List<Role> GetAll()
+        {
+            var list = roleRepository.GetRole();
+            return list;
+        }
 
     }
 }

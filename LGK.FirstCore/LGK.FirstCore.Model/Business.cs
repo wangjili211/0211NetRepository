@@ -11,7 +11,7 @@ namespace LGK.FirstCore.Model
     /// 业务表
     /// </summary>
     
-    public class Business
+    public class Business : BaseEntity
     {
         [Key]
         /// <summary>
