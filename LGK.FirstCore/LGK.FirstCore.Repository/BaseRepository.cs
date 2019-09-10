@@ -8,7 +8,7 @@ using System.Text;
 
 namespace LGK.FirstCore.Repository
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+    public abstract class BaseRepository<T> :IBaseRepository<T> where T : BaseEntity
     {
         DataContext EF = new DataContext();
         public DbSet<T> Entities
@@ -53,6 +53,11 @@ namespace LGK.FirstCore.Repository
         {
             var list = Entities.ToList();
             return list;
+        }
+
+        public PageModel<T> GetPage(int pageindex, int pagesize)
+        {
+            throw new NotImplementedException();
         }
     }
 

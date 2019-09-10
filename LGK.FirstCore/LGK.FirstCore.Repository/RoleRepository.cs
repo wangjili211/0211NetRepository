@@ -1,10 +1,11 @@
-﻿using LGK.FirstCore.IRepository;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 using LGK.FirstCore.Model;
 using Microsoft.EntityFrameworkCore;
+using LGK.FirstCore.IRepository;
 
 namespace LGK.FirstCore.Repository
 {

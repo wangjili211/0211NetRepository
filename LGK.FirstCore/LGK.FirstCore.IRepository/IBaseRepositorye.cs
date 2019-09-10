@@ -20,7 +20,7 @@ namespace LGK.FirstCore.IRepository
         /// <param name="pageindex"></param>
         /// <param name="pagesize"></param>
         /// <returns></returns>
-        PageModelFirst<T> GetPage(int pageindex, int pagesize);
+        PageModel<T> GetPage(int pageindex, int pagesize);
 
         //显示
         List<T> GetRole();

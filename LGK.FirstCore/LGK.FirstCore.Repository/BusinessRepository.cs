@@ -7,7 +7,7 @@ using LGK.FirstCore.Model;
 
 namespace LGK.FirstCore.Repository
 {
-    public class BusinessRepository : BaseRepository<Business>, IBusinessRepository
+    public class BusinessRepository : BaseRepository<Business> ,IBusinessRepository
     {
     }
 }
