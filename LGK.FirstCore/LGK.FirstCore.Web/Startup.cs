@@ -33,6 +33,7 @@ namespace LGK.FirstCore.Web
             });
             services.AddScoped<IUserRepository, UserRepository>();   //注册数据访问层 接口与实现类 关系
             services.AddScoped<IRoleRepository, RoleRepository>();   //注册数据访问层 接口与实现类 关系
+            services.AddScoped<IBusinessRepository, BusinessRepository>();//注册数据访问层 接口与实现类 关系
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LGK.FirstCoreApi</name>
+    </assembly>
+    <members>
+        <member name="M:LGK.FirstCoreApi.Controllers.RoleController.#ctor(LGK.FirstCore.IRepository.IRoleRepository)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="organization"></param>
+        </member>
+        <member name="F:LGK.FirstCoreApi.Controllers.UserController.userRepository">
+            <summary>
+            定义私有变量
+            </summary>
+        </member>
+        <member name="M:LGK.FirstCoreApi.Controllers.UserController.#ctor(LGK.FirstCore.IRepository.IUserRepository,LGK.FirstCore.IRepository.IRoleRepository)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="organization"></param>
+        </member>
+        <member name="F:LGK.FirstCoreApi.Controllers.ValuesController.userRepository">
+            <summary>
+            定义私有变量
+            </summary>
+        </member>
+        <member name="M:LGK.FirstCoreApi.Controllers.ValuesController.#ctor(LGK.FirstCore.IRepository.IUserRepository,LGK.FirstCore.IRepository.IRoleRepository)">
+            <summary>
+            构造函数注入
+            </summary>
+            <param name="organization"></param>
+        </member>
+    </members>
+</doc>
