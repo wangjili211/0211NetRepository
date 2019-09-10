@@ -8,7 +8,9 @@ namespace LGK.FirstCoreApi
 {
     internal class Info : OpenApiInfo
     {
-        public string Version { get; set; }
+        public string Version { get; set; }
+
+
         public string Title { get; set; }
     }
 }

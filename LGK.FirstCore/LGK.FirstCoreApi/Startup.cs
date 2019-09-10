@@ -46,11 +46,17 @@ namespace LGK.FirstCoreApi
                 {
                     Version = "v1",
                     Title = "test"
-                });
+                });
+
+
                 // 为 Swagger JSON and UI设置xml文档注释路径
-                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+
+
                 //获取应用程序所在目录（绝对路径，不受工作目录影响，建议采用此方法获取路径）
-                var xmlPath = Path.Combine(basePath, "SwaggerDemo.xml");
+                var xmlPath = Path.Combine(basePath, "SwaggerDemo.xml");
+
+
                 //如果需要显示控制器注释只需将第二个参数设置为true
                 options.IncludeXmlComments(xmlPath, true);
             });
@@ -71,7 +77,9 @@ namespace LGK.FirstCoreApi
 
             //配置Swagger  
             //浏览地址：http://localhost:50449/index.html
-            app.UseSwagger();
+            app.UseSwagger();
+
+
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "test");
