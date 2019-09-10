@@ -25,7 +25,7 @@ namespace LGK.FirstCore.Repository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("Data Source=169.254.46.35;Initial Catalog=fortefortissimo;User ID=Dang;pwd=1");
+                optionsBuilder.UseMySQL("Data Source=10.31.54.24;Initial Catalog=fortefortissimo;User ID=Hu;pwd=1");
             }
         }
 

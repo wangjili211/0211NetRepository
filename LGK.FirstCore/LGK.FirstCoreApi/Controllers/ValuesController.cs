@@ -12,40 +12,32 @@ namespace LGK.FirstCoreApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        /// <summary>
-        /// 定义私有变量
-        /// </summary>
-        private readonly IUserRepository userRepository;
-        private readonly IRoleRepository roleRepository;
-        /// <summary>
-        /// 构造函数注入
-        /// </summary>
-        /// <param name="organization"></param>
-        public ValuesController(IUserRepository _userRepository, IRoleRepository _roleRepository)
-        {
-            userRepository = _userRepository;
-            roleRepository = _roleRepository;
-        }
-
-
-
+        // GET api/values
+        [HttpGet("Get")]
         public ActionResult<IEnumerable<string>> Get()
         {
-
-            var user = new Userss
-            {
-                UserName = "test"
-            };
-            var i = userRepository.Insert(user);
-
-
-            var tmpUser = userRepository.GetModelById(4);
-            tmpUser.UserName = "test222";
-            i = userRepository.Update(tmpUser);
-
-            i = userRepository.Delete(4);
-
             return new string[] { "value1", "value2" };
+        }
+        [HttpGet("{id}")]
+        // GET api/values/5
+        public ActionResult<string> Get(int id)
+        {
+            return "value";
+        }
+        // POST api/values
+        [HttpPost]
+        public void Post([FromBody] string value)
+        {
+        }
+        // PUT api/values/5
+        [HttpPut]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+        // DELETE api/values/5
+        [HttpDelete]
+        public void Delete(int id)
+        {
         }
     }
 }
