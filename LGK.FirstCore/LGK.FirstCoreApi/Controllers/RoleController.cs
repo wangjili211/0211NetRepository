@@ -6,6 +6,7 @@ using LGK.FirstCore.IRepository;
 using LGK.FirstCore.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace LGK.FirstCoreApi.Controllers
 {
@@ -26,29 +27,24 @@ namespace LGK.FirstCoreApi.Controllers
 
         // GET api/values/5
         [HttpPost]
+
         public int AddRole(Role entity)
         { 
-            var i = roleRepository.Insert(entity);
+            var i = roleRepository.Insert(entity); 
+            return i;
+        }
+        [HttpDelete]
+        public int DeleteUser(Role Id)
+        {            
+            var i= roleRepository.Delete(Id);
             return i;
         }
 
-        [HttpDelete]
-        public int DeleteUser(Role Id)
-        {
-            Role dmodel = new Role();          
-            roleRepository.Delete(Id);
-            return 1;
-        }
-        // <summary>
-        // 角色显示
-        // </summary>
-        // <returns></returns>
         [HttpGet]
         public List<Role> GetAll()
         {
             var list = roleRepository.GetRole();
             return list;
         }
-
     }
 }

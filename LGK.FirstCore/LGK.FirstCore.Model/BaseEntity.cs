@@ -6,8 +6,7 @@ namespace LGK.FirstCore.Model
 {
     public abstract class BaseEntity
     {
-       //aaaaaa
-       //999
+       
 
     }
 }

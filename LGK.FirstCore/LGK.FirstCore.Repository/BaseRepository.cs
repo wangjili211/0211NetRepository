@@ -8,7 +8,7 @@ using System.Text;
 
 namespace LGK.FirstCore.Repository
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+    public abstract class BaseRepository<T> : IBasRepositorye<T> where T : BaseEntity
     {
         DataContext EF = new DataContext();
         public DbSet<T> Entities
@@ -49,6 +49,11 @@ namespace LGK.FirstCore.Repository
             return obj;
         }
 
+
+        /// <summary>
+        /// 显示
+        /// </summary>
+        /// <returns></returns>
         public List<T> GetRole()
         {
             var list = Entities.ToList();
