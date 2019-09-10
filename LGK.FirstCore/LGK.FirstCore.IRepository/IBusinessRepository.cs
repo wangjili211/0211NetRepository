@@ -6,7 +6,7 @@ using LGK.FirstCore.Model;
 
 namespace LGK.FirstCore.IRepository
 {
-    public interface IBusinessRepository : IBaseRepository<Business>
+    public interface IBusinessRepository : IBasRepositorye<Business>
     {
     }
 }

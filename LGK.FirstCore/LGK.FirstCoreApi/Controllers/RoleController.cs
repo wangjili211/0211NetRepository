@@ -33,37 +33,18 @@ namespace LGK.FirstCoreApi.Controllers
             var i = roleRepository.Insert(entity); 
             return i;
         }
-
-        public string Index1(string currentpage, string Name)
-        {
-            var Rolelist = roleRepository.Entities.ToList();
-
-            if (currentpage == null)
-            {
-                currentpage = "1";
-            }
-            if (!String.IsNullOrEmpty(Name))
-            {
-                Rolelist = Rolelist.Where(u => u.RoleName.Contains(Name)).ToList();
-            }
-
-            int totlepage = Rolelist.Count / 3 + (Rolelist.Count % 3 == 0 ? 0 : 1);
-            Rolelist = Rolelist.Skip((int.Parse(currentpage) - 1) * 3).Take(3).ToList();
-
-
-            PageModelFirst pagemodelfirst = new PageModelFirst();
-            pagemodelfirst.CurrentPage = int.Parse(currentpage);
-            pagemodelfirst.TotlePage = totlepage;
-            pagemodelfirst.PageData = Rolelist;
-
-            var json = JsonConvert.SerializeObject(pagemodelfirst);
-            return json;
-        }
-
+        [HttpDelete]
         public int DeleteUser(Role Id)
         {            
             var i= roleRepository.Delete(Id);
             return i;
+        }
+
+        [HttpGet]
+        public List<Role> GetAll()
+        {
+            var list = roleRepository.GetRole();
+            return list;
         }
     }
 }
