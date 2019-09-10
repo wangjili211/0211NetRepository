@@ -6,6 +6,7 @@ using LGK.FirstCore.IRepository;
 using LGK.FirstCore.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace LGK.FirstCoreApi.Controllers
 {
@@ -26,29 +27,43 @@ namespace LGK.FirstCoreApi.Controllers
 
         // GET api/values/5
         [HttpPost]
+
         public int AddRole(Role entity)
         { 
-            var i = roleRepository.Insert(entity);
+            var i = roleRepository.Insert(entity); 
             return i;
         }
 
-        [HttpDelete]
-        public int DeleteUser(Role Id)
+        public string Index1(string currentpage, string Name)
         {
-            Role dmodel = new Role();          
-            roleRepository.Delete(Id);
-            return 1;
-        }
-        // <summary>
-        // 角色显示
-        // </summary>
-        // <returns></returns>
-        [HttpGet]
-        public List<Role> GetAll()
-        {
-            var list = roleRepository.GetRole();
-            return list;
+            var Rolelist = roleRepository.Entities.ToList();
+
+            if (currentpage == null)
+            {
+                currentpage = "1";
+            }
+            if (!String.IsNullOrEmpty(Name))
+            {
+                Rolelist = Rolelist.Where(u => u.RoleName.Contains(Name)).ToList();
+            }
+
+            int totlepage = Rolelist.Count / 3 + (Rolelist.Count % 3 == 0 ? 0 : 1);
+            Rolelist = Rolelist.Skip((int.Parse(currentpage) - 1) * 3).Take(3).ToList();
+
+
+            PageModelFirst pagemodelfirst = new PageModelFirst();
+            pagemodelfirst.CurrentPage = int.Parse(currentpage);
+            pagemodelfirst.TotlePage = totlepage;
+            pagemodelfirst.PageData = Rolelist;
+
+            var json = JsonConvert.SerializeObject(pagemodelfirst);
+            return json;
         }
 
+        public int DeleteUser(Role Id)
+        {            
+            var i= roleRepository.Delete(Id);
+            return i;
+        }
     }
 }

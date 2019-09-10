@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LGK.FirstCore.IRepository",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LGK.FirstCore.Model", "LGK.FirstCore.Model\LGK.FirstCore.Model.csproj", "{CF2FAC04-9C37-4E39-8BD8-69B9402A3986}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LGK.FirstCore.Common", "LGK.FirstCore.Common\LGK.FirstCore.Common.csproj", "{5CA20482-3E11-41A2-81D7-D0C68B832B76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CF2FAC04-9C37-4E39-8BD8-69B9402A3986}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF2FAC04-9C37-4E39-8BD8-69B9402A3986}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF2FAC04-9C37-4E39-8BD8-69B9402A3986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA20482-3E11-41A2-81D7-D0C68B832B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA20482-3E11-41A2-81D7-D0C68B832B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA20482-3E11-41A2-81D7-D0C68B832B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA20482-3E11-41A2-81D7-D0C68B832B76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
