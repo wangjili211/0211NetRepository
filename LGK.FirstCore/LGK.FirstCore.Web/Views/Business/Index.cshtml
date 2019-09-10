@@ -1,0 +1,141 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/axios.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    @*引入ECharts文件*@
+    <script src="~/Scripts/echarts.min.js"></script>
+    <title>Index</title>
+</head>
+<body>
+    @*<div>
+             <input id="Button1" type="button" value="首页" class="btn btn-danger" />
+             <input id="Button1" type="button" value="目标管理" class="btn btn-danger" />
+             <input id="Button1" type="button" value="进度查询" class="btn btn-danger" />
+             <input id="Button1" type="button" value="结果统计" class="btn btn-danger" />
+             <input id="Button1" type="button" value="系统管理" class="btn btn-danger" />
+         </div>
+
+        <div>
+            <table>
+                <tr>
+                    <td>我的待阅</td>
+                </tr>
+                <tr>
+                    <td>业务名称</td>
+                    <td>完成情况</td>
+                    <td>级别</td>
+                    <td>责任人</td>
+                    <td>完成时间</td>
+                </tr>
+            </table>
+        </div>*@
+    <div id="main" style="width:20rem;height:15rem;"></div>
+        <script type="text/javascript">
+            //基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            //指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '积分排行'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['积分']
+                },
+                xAxis: {
+                    data: ["一区开发", "二区开发", "三区开发", "四区开发", "五区开发", "六区开发", "七区开发", "八区开发", "九区开发", "十区开发"]
+                },
+                yAxis: {},
+                series: [{
+                    name: '积分',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 25, 34, 15, 25]
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    @*<div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        $().ready(function () {
+            var myChart = echarts.init(document.getElementById('main'));
+            //图表显示提示信息
+            myChart.showLoading();
+            //定义图表options
+            var options = {
+                color: ['#3398DB'],
+                title: {
+                    text: "通过Ajax获取数据呈现图标示例",
+                    subtext: "www.stepday.com",
+                    sublink: "http://www.stepday.com/myblog/?Echarts"
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: []
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        mark: false
+                    }
+                },
+                calculable: true,
+                xAxis: [{
+                    type: 'category',
+                    data: []
+                }],
+                yAxis: [{
+                    type: 'value',
+                    splitArea: {
+                        show: true
+                    }
+                }],
+                series: [{
+                    barWidth: '60%'
+                }]
+            };
+
+            //通过Ajax获取数据
+            $.ajax({
+                type: "post",
+                async: false, //同步执行
+                url: "showEchartBar.action",
+                dataType: "json", //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        //将返回的category和series对象赋值给options对象内的category和series
+                        //因为xAxis是一个数组 这里需要是xAxis[i]的形式
+                        options.xAxis[0].data = result.category;
+                        options.series = result.series;
+                        options.legend.data = result.legend;
+
+                        myChart.hideLoading();
+                        myChart.setOption(options);
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("图表请求数据失败啦!");
+                }
+            });
+
+        });
+    </script>*@
+</body>
+</html>
