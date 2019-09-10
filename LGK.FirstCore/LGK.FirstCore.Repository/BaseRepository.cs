@@ -8,30 +8,28 @@ using System.Text;
 
 namespace LGK.FirstCore.Repository
 {
-    public abstract class BaseRepository<Role> : IBaseRepository<Role> where Role : BaseEntity
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         DataContext EF = new DataContext();
-        public DbSet<Role> Entities
+        public DbSet<T> Entities
         {
-            get { return EF.Set<Role>(); }
+            get { return EF.Set<T>(); }
         }
 
-
-
-        public int Insert(Role entity)
+        public int Insert(T entity)
         {
             Entities.Add(entity);
             var i = EF.SaveChanges();
             return i;
         }
 
-        public int Insert(IEnumerable<Role> entities)
+        public int Insert(IEnumerable<T> entities)
         {
             Entities.AddRange(entities);
             return EF.SaveChanges();
         }
 
-        public int Update(Role entity)
+        public int Update(T entity)
         {
             EF.Entry(entity).State = EntityState.Modified;
             return EF.SaveChanges();
@@ -45,40 +43,17 @@ namespace LGK.FirstCore.Repository
             return EF.SaveChanges();
         }
 
-        public Role GetModelById(object key)
+        public T GetModelById(object key)
         {
             var obj = Entities.Find(key);
             return obj;
         }
 
-
-        /// <summary>
-        /// 显示分页查询
-        /// </summary>
-        /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>
-        /// <returns></returns>
-        //public PageModel<Role> GetPage(int pageindex, int pagesize)
-        //{
-
-        //}
-
-        //public PageModel<Role> IBaseRepository<Role>.GetPage(int pageindex, int pagesize)
-        //{
-           
-        //}
-
-        public PageModelFirst<Role> GetPage(int pageindex, int pagesize)
+        public List<T> GetRole()
         {
-            PageModel<Role> pd = new PageModel<Role>();
-
-            using (DataContext db = new DataContext())
-            {
-                pd.Data = db.Role.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
-                int count = db.Role.Count();
-                pd.RountCount = Convert.ToInt32(Math.Ceiling((decimal)count / pagesize));
-            }
-            return pd;
+            var list = Entities.ToList();
+            return list;
         }
     }
+
 }

@@ -7,51 +7,48 @@ using LGK.FirstCore.Model;
 using LGK.FirstCore.Repository;
 using LGK.FirstCore.IRepository;
 using Microsoft.EntityFrameworkCore;
+using LGK.FirstCore.Common;
 
 namespace LGK.FirstCore.Web.Controllers
 {
     public class RoleController : Controller
     {
         private readonly IRoleRepository roleRepository;
-        /// <summary>
-        /// 构造函数注入
-        /// </summary>
-        /// <param name = "organization" ></ param >
-        public RoleController(IRoleRepository _roleRepository)
+        ///// <summary>
+        ///// 构造函数注入
+        ///// </summary>
+        ///// <param name="organization"></param>
+        //public RoleController(IRoleRepository _roleRepository)
+        //{
+        //    roleRepository = _roleRepository;
+        //}
+
+        public JsonResult Adds(Role role)
         {
-            roleRepository = _roleRepository;
+            string jsonm = Newtonsoft.Json.JsonConvert.SerializeObject(role);
+            var result = HelperHttpClient.GetAll("post", "api/role", jsonm);
+            return Json(result);
         }
 
-        [HttpPost]
-        public int AddRole(Role entity)
+        public ActionResult AddRole()
         {
-            var i = roleRepository.Insert(entity);
-            return i;
+            return View();
         }
-
-      
 
         public ActionResult Index()
         {
             return View();
-        }
+        } 
 
-        public ActionResult Index1()
+
+        [HttpPut]
+        public Role UpdateRole(int Id)
         {
-            return View();
+            Role i = roleRepository.GetModelById(Id);
+            return i;
+
         }
-
-
-
-
-        //[HttpPost]
-        //public Role UpdateUser(int Id)
-        //{
-        //    Role i = roleRepository.GetModelById(Id);
-        //    return i;
-
-        //}
-        public ActionResult UpdateUser()
+        public ActionResult UpdateRole()
         {
             return View();
         }
