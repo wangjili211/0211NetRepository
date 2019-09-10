@@ -28,6 +28,12 @@ namespace LGK.FirstCore.Repository
             Entities.AddRange(entities);
             return EF.SaveChanges();
         }
+        //public int Add(Role role)
+        //{
+        //    EF.Role.Add(role);
+        //    int i = EF.SaveChanges();
+        //    return i;
+        //}
 
         public int Update(T entity)
         {
@@ -48,8 +54,7 @@ namespace LGK.FirstCore.Repository
             var obj = Entities.Find(key);
             return obj;
         }
-
-
+        
         /// <summary>
         /// 显示
         /// </summary>
@@ -59,6 +64,8 @@ namespace LGK.FirstCore.Repository
             var list = Entities.ToList();
             return list;
         }
+
+ 
     }
 
 }

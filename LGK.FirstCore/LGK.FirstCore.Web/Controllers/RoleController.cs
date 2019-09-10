@@ -14,38 +14,48 @@ namespace LGK.FirstCore.Web.Controllers
     public class RoleController : Controller
     {
         private readonly IRoleRepository roleRepository;
-        ///// <summary>
-        ///// 构造函数注入
-        ///// </summary>
-        ///// <param name="organization"></param>
-        //public RoleController(IRoleRepository _roleRepository)
+        /// <summary>
+        /// 构造函数注入
+        /// </summary>
+        /// <param name="organization"></param>
+        public RoleController(IRoleRepository _roleRepository)
+        {
+            roleRepository = _roleRepository;
+        }
+
+        //public JsonResult Adds(Role role)
         //{
-        //    roleRepository = _roleRepository;
+        //    string jsonm = Newtonsoft.Json.JsonConvert.SerializeObject(role);
+        //    var result = HelperHttpClient.GetAll("post", "api/role", jsonm);
+        //    return Json(result);
+        //}
+
+        //public ActionResult AddRole()
+        //{
+        //    return View();
         //}
 
         public JsonResult Adds(Role role)
         {
-            string jsonm = Newtonsoft.Json.JsonConvert.SerializeObject(role);
-            var result = HelperHttpClient.GetAll("post", "api/role", jsonm);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(role);
+            var result = HelperHttpClient.GetAll("post", "/api/Role", json);
             return Json(result);
         }
 
-        public ActionResult AddRole()
+
+        public ActionResult Add()
         {
             return View();
         }
-    
+
+
         public ActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
-        public int Delete(object id)
-        {
-            int i = roleRepository.Delete(id);
-            return i;
-        }
+ 
+
 
 
 
@@ -59,6 +69,5 @@ namespace LGK.FirstCore.Web.Controllers
         {
             return View();
         }
-
     }
 }
