@@ -15,6 +15,12 @@ namespace LGK.FirstCore.IRepository
         //显示
         List<T> GetRole();
 
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="announcementform"></param>
+        /// <returns></returns>
+        //int Add(Role role);
 
 
         /// <summary>
@@ -26,8 +32,8 @@ namespace LGK.FirstCore.IRepository
 
         int Insert(T entity);
 
-    //增加多个实体
-    int Insert(IEnumerable<T> entities);
+        //增加多个实体
+        int Insert(IEnumerable<T> entities);
 
     /// <summary>
     /// 更新实体
