@@ -41,8 +41,7 @@
         methods: {
             addUser: function () {
                 var params = new URLSearchParams();
-                params.append("RoleName", this.RoleName);
-
+                params.append("RoleName", this.RoleName)
                 // axios.post("http://localhost:52141/api/Role/AddRole", params).then(
                 axios.post('/Role/Addrole', params).then(
                     (response) => {

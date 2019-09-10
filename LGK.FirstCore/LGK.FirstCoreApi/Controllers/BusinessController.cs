@@ -24,6 +24,8 @@ namespace LGK.FirstCoreApi.Controllers
             businessRepository = _businessRepository;
         }
 
-      
+
+   
+    
     }
 }
