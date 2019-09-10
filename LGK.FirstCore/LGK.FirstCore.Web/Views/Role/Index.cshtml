@@ -2,11 +2,9 @@
     ViewData["Title"] = "Index";
 }
 
-@*<script src="~/vue.js"></script>
-    <script src="~/axios.js"></script>*@
 
-<script src="~/Scripts/vue.js"></script>
-<script src="~/Scripts/axios.js"></script>
+<script src="~/Content/Vue.js"></script>
+<script src="~/Content/axios.js"></script>
 <h2>Index</h2>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <div id="divstudents">
@@ -15,15 +13,24 @@
             <tr>
                 <td>ID</td>
                 <td>角色名称</td>
+                <td>操作</td>
             </tr>
         </thead>
         <tbody>
             <tr v-for="item in list">
                 <td>{{item.roleId}}</td>
                 <td>{{item.roleName}}</td>
+                <td>
+                    <a href="#" v-on:click="deleteRoleById(role.RoleId)">删除</a>
+                    <a href="/User/Update" v-on:click="updateUser(role.RoleId,role.RoleName)">修改</a>
+                </td>
+                
             </tr>
         </tbody>
     </table>
+   
+        
+
 </div>
 <script>
     var vm = new Vue({
@@ -44,63 +51,26 @@
                     }
                     console.log(this.list)
                 });
-            }
-        }
-    })
-</script>
-@*@{
-        Layout = null;
-    }
-
-    <!DOCTYPE html>
-
-    <html>
-    <head>
-        <script src="~/Scripts/axios.js"></script>
-        <script src="~/Scripts/vue.js"></script>
-    </head>
-    <body>
-
-        <div id="divstudents">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>角色名称</td>
-                </thead>
-                <tbody>
-                    <tr v-for="item in list">
-                        <td>{{item.RoleId}}</td>
-                        <td>{{item.RoleName}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <script>
-            var vm = new Vue({
-                el: "#divstudents",
-                data: {
-                    list: []
-                },
-                mounted() {
-                    this.pagehandler();
-                },
-                methods: {
-                    pagehandler: function () {
-                        axios.get(" http://localhost:52141/api/Role").then((response) => {
-                            console.log(response)
-                            this.list = []
-                            for (var i = 0; i < response.data.length; i++) {
-                                this.list.push(response.data[i]);
+            },
+            deleteRoleById: function (RoleId) {
+                var params = new URLSearchParams();
+                params.append("RoleId", this.RoleId);
+                    axios.post('http://localhost:52141/api/Role'), { Id: RoleId }.then(
+                        (response) => {
+                            if (response.data > 0) {
+                                this.getAllUser(this.cur);
                             }
-                            //console.log(this.list)
-                        });
-                    }
-                }
-            })
-        </script>
-    </body>
-    </html>*@
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+            }
+        })
+</script>
 
 
 

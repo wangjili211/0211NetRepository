@@ -38,9 +38,17 @@ namespace LGK.FirstCore.Web.Controllers
         public ActionResult Index()
         {
             return View();
-        } 
+        }
 
-       
+        [HttpPost]
+        public int Delete(object id)
+        {
+            int i = roleRepository.Delete(id);
+            return i;
+        }
+
+
+
         public Role UpdateRole(int Id)
         {
             Role i = roleRepository.GetModelById(Id);
