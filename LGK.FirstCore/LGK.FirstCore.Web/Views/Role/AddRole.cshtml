@@ -10,13 +10,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AddUser</title>
+    <title>AddRole</title>
 </head>
 <body>
     <div id="app">
         <table v-show="RoleList.length">
             <tr>
-                <td>姓名</td>
+                <td>姓名</td>.
                 <td><input id="Text1" type="text" v-model="RoleName" /></td>
             </tr>
             <tr>
@@ -30,31 +30,33 @@
     </div>
 </body>
 </html>
-<script type="text/javascript">
+<script type="text/javascript"> 
     var vm = new Vue({
         el: "#app",
+        type:"post",
         data: {
             RoleList: ['董事'],
             RoleName: ""
         },
         methods: {
-            addUser: function (RoleName) {
+            addUser: function () {
                 var params = new URLSearchParams();
-                params.append("RoleName", RoleName);
-                axios.post("http://localhost:52173/Role/AddRole", params).then(
+                params.append("RoleName", this.RoleName);
+
+                // axios.post("http://localhost:52141/api/Role/AddRole", params).then(
+                axios.post('/Role/Addrole', params).then(
                     (response) => {
                         alert("添加成功");
                     },
                     (response) => {
                         alert(response.status);
                     }
-                ).catch(function (response) {
+                ).catch(function (response) { 
                     alert(response);
                 });
             },
         },
     });
 </script>
-
 
 
