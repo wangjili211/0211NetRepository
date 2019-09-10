@@ -24,6 +24,12 @@ namespace LGK.FirstCoreApi.Controllers
             roleRepository = _roleRepository;
         }
 
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+
         // GET api/values/5
         [HttpPost]
         public int AddRole(Role entity)
@@ -32,6 +38,11 @@ namespace LGK.FirstCoreApi.Controllers
             return i;
         }
 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpDelete]
         public int DeleteUser(Role Id)
         {

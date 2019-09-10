@@ -17,24 +17,41 @@ namespace LGK.FirstCoreApi.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
-        }
+        }
+
+
         [HttpGet("{id}")]
         // GET api/values/5
         public ActionResult<string> Get(int id)
         {
             return "value";
-        }
+        }
+
+
         // POST api/values
         [HttpPost]
         public void Post([FromBody] string value)
         {
-        }
+        }
+
+
         // PUT api/values/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
         [HttpPut]
         public void Put(int id, [FromBody] string value)
         {
-        }
+        }
+
+
         // DELETE api/values/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete]
         public void Delete(int id)
         {
