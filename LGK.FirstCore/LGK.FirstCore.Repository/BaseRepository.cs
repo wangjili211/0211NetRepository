@@ -3,6 +3,7 @@ using LGK.FirstCore.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LGK.FirstCore.Repository
@@ -46,6 +47,12 @@ namespace LGK.FirstCore.Repository
         {
             var obj = Entities.Find(key);
             return obj;
+        }
+
+        public List<T> GetRole()
+        {
+            var list = Entities.ToList();
+            return list;
         }
     }
 
