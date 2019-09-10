@@ -6,22 +6,12 @@ using LGK.FirstCore.Model;
 
 namespace LGK.FirstCore.IRepository
 {
-    public interface IBaseRepository<T> where T : BaseEntity
+    public interface IBasRepositorye<T> where T : BaseEntity
     {
         /// <summary>
         /// 获取数据集合
         /// </summary>
-        //DbSet<T> Entities { get; }
-
-
-        /// <summary>
-        /// 分页查询显示
-        /// </summary>
-        /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>
-        /// <returns></returns>
-        PageModel<T> GetPage(int pageindex, int pagesize);
-
+        DbSet<T> Entities { get; }
         //显示
         List<T> GetRole();
 

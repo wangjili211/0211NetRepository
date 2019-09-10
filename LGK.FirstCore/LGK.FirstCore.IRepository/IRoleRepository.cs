@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LGK.FirstCore.IRepository
 {
-    public interface IRoleRepository:IBaseRepository<Role>
+    public interface IRoleRepository: IBasRepositorye<Role>
     {
 
     }
