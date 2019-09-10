@@ -16,7 +16,7 @@ namespace LGK.FirstCore.Web.Controllers
         /// <summary>
         /// 构造函数注入
         /// </summary>
-        /// <param name="organization"></param>
+        /// <param name = "organization" ></ param >
         public RoleController(IRoleRepository _roleRepository)
         {
             roleRepository = _roleRepository;
@@ -27,26 +27,30 @@ namespace LGK.FirstCore.Web.Controllers
         {
             var i = roleRepository.Insert(entity);
             return i;
-        } 
-
-        public ActionResult AddRole()
-        {
-            return View();
         }
+
+      
 
         public ActionResult Index()
         {
             return View();
-        } 
-
-
-        [HttpPost]
-        public Role UpdateUser(int Id)
-        {
-            Role i = roleRepository.GetModelById(Id);
-            return i;
-
         }
+
+        public ActionResult Index1()
+        {
+            return View();
+        }
+
+
+
+
+        //[HttpPost]
+        //public Role UpdateUser(int Id)
+        //{
+        //    Role i = roleRepository.GetModelById(Id);
+        //    return i;
+
+        //}
         public ActionResult UpdateUser()
         {
             return View();
