@@ -14,14 +14,7 @@ namespace LGK.FirstCore.IRepository
         //DbSet<T> Entities { get; }
 
 
-        /// <summary>
-        /// 分页查询显示
-        /// </summary>
-        /// <param name="pageindex"></param>
-        /// <param name="pagesize"></param>
-        /// <returns></returns>
-        PageModelFirst<T> GetPage(int pageindex, int pagesize);
-
+       
         //显示
         List<T> GetRole();
 

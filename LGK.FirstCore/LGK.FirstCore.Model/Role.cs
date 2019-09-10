@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LGK.FirstCore.Model
 {
-    public class : BaseEntity
+    public class  Role
     {
         [Key]
         public int RoleId { get; set; }
