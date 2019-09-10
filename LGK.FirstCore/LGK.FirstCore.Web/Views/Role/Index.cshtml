@@ -4,23 +4,25 @@
 
 @*<script src="~/vue.js"></script>
     <script src="~/axios.js"></script>*@
-
-<script src="~/Scripts/vue.js"></script>
-<script src="~/Scripts/axios.js"></script>
+<script src="~/Content/Vue.js"></script>
+<script src="~/Content/axios.js"></script>
+<script src="~/Content/jquery-1.10.2.js"></script>
 <h2>Index</h2>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+
 <div id="divstudents">
     <table class="table table-bordered">
         <thead>
             <tr>
                 <td>ID</td>
                 <td>角色名称</td>
+                <td>操作</td>
             </tr>
         </thead>
         <tbody>
             <tr v-for="item in list">
                 <td>{{item.roleId}}</td>
                 <td>{{item.roleName}}</td>
+                <td><a href="#" v-on:click="deleteRoleId(Role.RoleId)">删除</a></td>
             </tr>
         </tbody>
     </table>
@@ -44,13 +46,27 @@
                     }
                     console.log(this.list)
                 });
-            }
-        }
+            },
+            deleteRoleId: function (RoleId) {
+                axios.post('@Url.Action("DeleteRole", "Role")', { RoleId: RoleId }).then(
+                        (response) => {
+                            if (response.data > 0) {
+                                this.pagehandler(this.cur);
+                            }
+                        },
+                        (response) => { 
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+            },
+            },   
     })
 </script>
 
 
-@*fdkf*@ 
+@*fdkf*@
 @*@{
         Layout = null;
     }

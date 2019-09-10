@@ -34,7 +34,7 @@ namespace LGK.FirstCoreApi.Controllers
             return i;
         }
         [HttpDelete]
-        public int DeleteUser(Role Id)
+        public int DeleteRole(Role Id)
         {            
             var i= roleRepository.Delete(Id);
             return i;
