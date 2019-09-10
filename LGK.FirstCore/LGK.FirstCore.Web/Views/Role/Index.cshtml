@@ -4,9 +4,8 @@
 
 @*<script src="~/vue.js"></script>
     <script src="~/axios.js"></script>*@
-
-<script src="~/Scripts/vue.js"></script>
-<script src="~/Scripts/axios.js"></script>
+<script src="~/Content/Vue.js"></script>
+<script src="~/Content/axios.js"></script>
 <h2>Index</h2>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <div id="divstudents">
@@ -15,12 +14,14 @@
             <tr>
                 <td>ID</td>
                 <td>角色名称</td>
+                <td>操作</td>
             </tr>
         </thead>
         <tbody>
             <tr v-for="item in list">
                 <td>{{item.roleId}}</td>
                 <td>{{item.roleName}}</td>
+                <td> <button class="btn btn-primary btn-2g" data-toggle="modal" v-on:click="UpdateRole(item.Id)">修改</button></td><td></td>
             </tr>
         </tbody>
     </table>
@@ -50,7 +51,7 @@
 </script>
 
 
-@*fdkf*@ 
+@*fdkf*@
 @*@{
         Layout = null;
     }
