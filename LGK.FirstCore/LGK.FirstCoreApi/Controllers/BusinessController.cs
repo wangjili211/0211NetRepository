@@ -24,9 +24,9 @@ namespace LGK.FirstCoreApi.Controllers
             businessRepository = _businessRepository;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
     }
 }
