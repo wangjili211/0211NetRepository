@@ -45,12 +45,12 @@ namespace LGK.FirstCoreApi.Controllers
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="roleId"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public int DeleteRole(int roleId)
+        public int DeleteUser(int id)
         {
-            var i = roleRepository.Delete(roleId);
+            var i = roleRepository.Delete(id);
             return i;
         }
         /// <summary>

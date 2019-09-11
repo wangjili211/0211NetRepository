@@ -62,9 +62,12 @@
                 <td>{{item.roleId}}</td>
                 <td>{{item.roleName}}</td>
                 <td>{{item.roleHappy}}</td>
+                @*<td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.Id)">删除</a>*@
                 <td>
-                    <a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.roleId)">删除</a>
-                    <a href="#" class="btn btn-info btn-2g" v-on:click="Update(item.Id)">修改</a>
+                    <div v-if="item.roleId!=''">                
+                        <a href="#" v-on:click="deleteUserById(item.roleId)">删除</a>
+                    </div>
+
                 </td>
             </tr>
         </tbody>
@@ -74,45 +77,82 @@
 
 
 <script>
+    //var myViewModel = new Vue({
+    //    el: '#myView',
+    //    data: myModel,
+    //    methods: {
+    //        Delete(SystemInfoId) {
+    //            if (confirm("确认删除吗？")) {
+    //                alert(SystemInfoId)
+    //                this.$http.get('http://localhost:8005/api/SysManagement/tbSystemInfoDel/?SystemInfoId=' + SystemInfoId).then(result => {
+    //                    var result = result.body;
+    //                    if (result.code == 200) {
 
-    var vm = new Vue({
-        el: "#divstudents",
-        data: {
-            list: []
-        },
-        mounted() {
-            this.pagehandler();
-        },
-        methods: {
-            pagehandler: function () {
-                axios.get("http://localhost:52141/api/Role").then((response) => {
-                    //console.table(response.data)
-                    this.list = []
-                    for (var i = 0; i < response.data.length; i++) {
-                        this.list.push(response.data[i]);
+    //                        alert('删除失败')
+    //                    }
+    //                    else{
+    //                        alert('删除成功')
+
+    //                        location.reload()
+    //                    }
+    //                })
+    //            }
+    //        },
+
+            var vm = new Vue({
+                el: "#divstudents",
+                data: {
+                    list: []
+                },
+                mounted() {
+                    this.pagehandler();
+                },
+                methods: {
+                    pagehandler: function () {
+                        axios.get("http://localhost:52141/api/Role").then((response) => {
+                            //console.table(response.data)
+                            this.list = []
+                            for (var i = 0; i < response.data.length; i++) {
+                                this.list.push(response.data[i]);
+                            }
+                            console.log(this.list)
+                        });
+                    },
+                    deleteUserById: function (roleId) {
+                         axios.delete("/role/DeleteUser?id="+roleId ).then((response) => {
+                            if (response.data > 0) {
+                                this.pagehandler();
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+            },
+           
+                }
+            });
+
+            var vm = new Vue({
+                el: "#AccountAdd",
+                type: "post",
+                data: {
+                    roleName: "",
+                    roleHappy: ""
+                },
+                methods: {
+                    AddAccount: function () {
+
+                        var params = new URLSearchParams();
+                        params.append("roleName", this.roleName);
+                        params.append("roleHappy", this.roleHappy);
+                        axios.post('/role/Adds', params).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('添加失败') })
                     }
-                    console.log(this.list)
-                });
-            }
-        }
-    });
+                }
+            });
 
-    var vm = new Vue({
-        el: "#AccountAdd",
-        type: "post",
-        data: {
-            roleName: "",
-            roleHappy: ""
-        },
-        methods: {
-            AddAccount: function () {
-                var params = new URLSearchParams();
-                params.append("roleName", this.roleName);
-                params.append("roleHappy", this.roleHappy);
-                axios.post('/role/Adds', params).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('添加失败') })
-            }
-        }
-    });
 </script>
 
 @*-----------------------------------------------------------------------------------------------------------*@
