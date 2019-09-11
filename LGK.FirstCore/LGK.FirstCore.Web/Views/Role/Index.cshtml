@@ -62,7 +62,13 @@
                 <td>{{item.roleId}}</td>
                 <td>{{item.roleName}}</td>
                 <td>{{item.roleHappy}}</td>
-                <td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.Id)">删除</a>
+                @*<td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.Id)">删除</a>*@
+                <td>
+                    <div v-if="item.roleId!=''">                
+                        <a href="#" v-on:click="deleteUserById(item.roleId)">删除</a>
+                    </div>
+
+                </td>
             </tr>
         </tbody>
     </table>
@@ -111,7 +117,21 @@
                             }
                             console.log(this.list)
                         });
-                    }
+                    },
+                    deleteUserById: function (roleId) {
+                         axios.delete("/role/DeleteUser?id="+roleId ).then((response) => {
+                            if (response.data > 0) {
+                                this.pagehandler();
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+            },
+           
                 }
             });
 
