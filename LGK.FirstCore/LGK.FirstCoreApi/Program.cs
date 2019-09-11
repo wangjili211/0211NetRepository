@@ -12,6 +12,8 @@ namespace LGK.FirstCoreApi
 {
     public class Program
     {
+       
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();

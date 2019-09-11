@@ -47,7 +47,7 @@ namespace LGK.FirstCore.IRepository
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    int Delete(object id);
+    int Delete(int id);
 
     /// <summary>
     /// 根据逐渐获取实体
