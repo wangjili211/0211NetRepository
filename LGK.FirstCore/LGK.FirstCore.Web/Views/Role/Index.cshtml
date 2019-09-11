@@ -62,8 +62,8 @@
                 <td>{{item.roleId}}</td>
                 <td>{{item.roleName}}</td>
                 <td>{{item.roleHappy}}</td>
-                <td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.Id)">删除</a>
-            </tr>
+                <td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.RoleId)">删除</a>
+            </tr> 
         </tbody>
     </table>
 </div>
@@ -71,14 +71,15 @@
 
 
 <script>
+    //var myModel = { list: [] };
     //var myViewModel = new Vue({
     //    el: '#myView',
     //    data: myModel,
     //    methods: {
-    //        Delete(SystemInfoId) {
+    //        Delete(RoleId) {
     //            if (confirm("确认删除吗？")) {
-    //                alert(SystemInfoId)
-    //                this.$http.get('http://localhost:8005/api/SysManagement/tbSystemInfoDel/?SystemInfoId=' + SystemInfoId).then(result => {
+    //                alert(RoleId)
+    //                this.$http.Delete("http://localhost:52141/api/Role/DeleteUser/?RoleId=" + RoleId).then(result => {
     //                    var result = result.body;
     //                    if (result.code == 200) {
 
@@ -92,7 +93,7 @@
     //                })
     //            }
     //        },
-
+            //添加
             var vm = new Vue({
                 el: "#divstudents",
                 data: {
@@ -104,17 +105,17 @@
                 methods: {
                     pagehandler: function () {
                         axios.get("http://localhost:52141/api/Role").then((response) => {
-                            //console.table(response.data)
+                            console.table(response.data)
                             this.list = []
                             for (var i = 0; i < response.data.length; i++) {
                                 this.list.push(response.data[i]);
                             }
-                            console.log(this.list)
+                            //console.log(this.list)
                         });
                     }
                 }
             });
-
+            //显示
             var vm = new Vue({
                 el: "#AccountAdd",
                 type: "post",
