@@ -2,80 +2,97 @@
     ViewData["Title"] = "Index";
 }
 
-@*<script src="~/vue.js"></script>
-    <script src="~/axios.js"></script>*@
-<script src="~/Content/Vue.js"></script>
-<script src="~/Content/axios.js"></script>
+
+
+<script src="~/vue.js"></script>
+<script src="~/axios.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 <h2>Index</h2>
-<script src="~/Content/scripts/jquery-1.10.2.js"></script>
+<div>
+    <input id="releasecontent" type="text" placeholder="请输入名称" />
+    <button id="Button1" class="btn btn-primary btn-2g" onclick="getContent()">查询</button>
+    <button class="btn btn-primary btn-2g" data-toggle="modal" data-target="#myModal">添加</button>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">分类添加</h4>
+            </div>
+            <div>
+                <div id="AccountAdd" class="modal-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <td>角色名称</td>
+                            <td><input type="text" v-model="roleName" /></td>
+                        </tr>
+                        <tr>
+                            <td>角色爱好</td>
+                            <td><input type="text" v-model="roleHappy" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button v-on:click="AddAccount()">添加</button>
+                                <button type="button" data-dismiss="modal"> 关闭</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="divstudents">
     <table class="table table-bordered">
         <thead>
             <tr>
                 <td>ID</td>
                 <td>角色名称</td>
+                <td>角色爱好</td>
+                <td>操作</td>
             </tr>
         </thead>
         <tbody>
             <tr v-for="item in list">
                 <td>{{item.roleId}}</td>
-                <td>{{item.roleName}}</td>               
+                <td>{{item.roleName}}</td>
+                <td>{{item.roleHappy}}</td>
+                <td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.Id)">删除</a>
             </tr>
         </tbody>
     </table>
 </div>
+
+
+
 <script>
-    var vm = new Vue({
-        el: "#divstudents",
-        data: {
-            list: []
-        },
-        mounted() {
-            this.pagehandler();
-        },
-        methods: {
-            pagehandler: function () {
-                axios.get("http://localhost:52141/api/Role").then((response) => {
-                    //console.table(response.data)
-                    this.list = []
-                    for (var i = 0; i < response.data.length; i++) {
-                        this.list.push(response.data[i]);
-                    }
-                    console.log(this.list)
-                });
-            }
-        }
-})
-</script>
-@*@{
-        Layout = null;
-    }
+    //var myViewModel = new Vue({
+    //    el: '#myView',
+    //    data: myModel,
+    //    methods: {
+    //        Delete(SystemInfoId) {
+    //            if (confirm("确认删除吗？")) {
+    //                alert(SystemInfoId)
+    //                this.$http.get('http://localhost:8005/api/SysManagement/tbSystemInfoDel/?SystemInfoId=' + SystemInfoId).then(result => {
+    //                    var result = result.body;
+    //                    if (result.code == 200) {
 
-    <!DOCTYPE html>
+    //                        alert('删除失败')
+    //                    }
+    //                    else{
+    //                        alert('删除成功')
 
-    <html>
-    <head>
-        <script src="~/Scripts/axios.js"></script>
-        <script src="~/Scripts/vue.js"></script>
-    </head>
-    <body>
+    //                        location.reload()
+    //                    }
+    //                })
+    //            }
+    //        },
 
-        <div id="divstudents">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>角色名称</td>
-                </thead>
-                <tbody>
-                    <tr v-for="item in list">
-                        <td>{{item.RoleId}}</td>
-                        <td>{{item.RoleName}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <script>
             var vm = new Vue({
                 el: "#divstudents",
                 data: {
@@ -86,20 +103,221 @@
                 },
                 methods: {
                     pagehandler: function () {
-                        axios.get(" http://localhost:52141/api/Role").then((response) => {
-                            console.log(response)
+                        axios.get("http://localhost:52141/api/Role").then((response) => {
+                            //console.table(response.data)
                             this.list = []
                             for (var i = 0; i < response.data.length; i++) {
                                 this.list.push(response.data[i]);
                             }
-                            //console.log(this.list)
+                            console.log(this.list)
                         });
                     }
                 }
-            })
-        </script>
+            });
+
+            var vm = new Vue({
+                el: "#AccountAdd",
+                type: "post",
+                data: {
+                    roleName: "",
+                    roleHappy: ""
+                },
+                methods: {
+                    AddAccount: function () {
+
+                        var params = new URLSearchParams();
+                        params.append("roleName", this.roleName);
+                        params.append("roleHappy", this.roleHappy);
+                        axios.post('/role/Adds', params).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('添加失败') })
+                    }
+                }
+            });
+
+</script>
+
+@*-----------------------------------------------------------------------------------------------------------*@
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>菜单分类</title>
+        <link href="Content/bootstrap.css" rel="stylesheet" />
+        <script src="Scripts/jquery-3.3.1.js"></script>
+        <script src="Scripts/bootstrap.js"></script>
+        <script src="Scripts/vue.js"></script>
+        <script src="Scripts/vue-resource.js"></script>
+        <script src="Scripts/axios.js"></script>
+        <link href="Content/bootstrap.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div>
+            <h2>菜单分类</h2>
+            <input id="SystemInfoNames" type="text" placeholder="分类名" />
+            <button id="Button1" class="btn btn-info btn-2g" onclick="getItem()">查询</button>
+            <button class="btn btn-info btn-2g" data-toggle="modal" data-target="#myModal">添加分类</button>
+        </div>
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">分类添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="app">
+                            <table class="table table-hover">
+                                <tr>
+                                    <td>分类名称</td>
+                                    <td>
+                                        <input type="hidden" id="Id" />
+
+                                        <select id="SystemInfoParentId" v-model="s.SystemInfoParentId">
+                                            <option value="1">员工管理</option>
+                                            <option value="2">库存管理</option>
+                                            <option value="3">消息管理</option>
+                                            <option value="4">供应商管理</option>
+                                            <option value="5">入库管理</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>描述</td>
+                                    <td>
+                                        <input id="SystemInfoName" v-model="s.SystemInfoName" type="text" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button @click="AddItem()"> 添加</button>
+                                        <button type="button" data-dismiss="modal">关闭</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="myView">
+            <table class="table table-hover">
+                <tr>
+                    <td>分类名</td>
+                    <td>操作</td>
+                </tr>
+                <tr v-for="item in MenuList">
+                    te
+                      <!--<td>{{item.SystemInfoId}}</td>-->
+                    <td>{{item.SystemInfoParentId==1?"员工管理":item.SystemInfoParentId==2?"库存管理":item.SystemInfoParentId==3?"消息管理":item.SystemInfoParentId==4?"供应商管理":item.SystemInfoParentId==5?"入库管理":item.SystemInfoParentId==6?"发票管理":item.SystemInfoParentId==7?"报表管理":item.SystemInfoParentId==8?"采购订单管理":item.SystemInfoParentId==9?"订单管理":item.SystemInfoParentId==10?"仓库管理":item.SystemInfoParentId==11?"商品分类管理":"商品信息管理"}}</td>
+                    <!--<td>{{item.SystemInfoName}}</td>-->
+                    <td><a href="#" class="btn btn-info btn-2g" @click="Delete(item.SystemInfoId)">删除</a>
+                </tr>
+            </table>
+        </div>
     </body>
-    </html>*@
+    </html>
+    <script>
+        var myModel = { MenuList: [] };
+        var myViewModel = new Vue({
+            el: '#myView',
+            data: myModel,
+            methods: {
+                Delete(SystemInfoId) {
+                    if (confirm("确认删除吗？")) {
+                        alert(SystemInfoId)
+                        this.$http.get('http://localhost:8005/api/SysManagement/tbSystemInfoDel/?SystemInfoId=' + SystemInfoId).then(result => {
+                            var result = result.body;
+                            if (result.code == 200) {
+
+                                alert('删除失败')
+                            }
+                            else {
+                                alert('删除成功')
+
+                                location.reload()
+                            }
+                        })
+                    }
+                },
+                Upt(SystemInfoId) {
+                    //反填数据
+                    $("#Id").val(SystemInfoId);
+                    $.ajax({
+                        url: 'http://localhost:8005/api/SysManagement/tbSystemInfoUpd?SystemInfoId=' + SystemInfoId,
+                        type: 'get',
+                        dataType: "json",
+                        success: function (data) {
+
+                            $("#SystemInfoName").val(data[0].SystemInfoName);
+
+                        }
+                    })
+                    $("#myModal").modal();
+                }
+            },
+        })
+        //显示
+        $(function () {
+            $.ajax({
+                url: "http://localhost:8005/api/SysManagement/GettbSystemInfo",
+                type: "get",
+                dataType: 'json',
+                timeout: 3000,
+                success: function (result) {
+                    myViewModel.MenuList = result
+                },
+                error: function () {
+                },
+            })
+        });
+        //添加
+        var vm = new Vue({
+            el: '#app',
+            type: "post",
+            data: {
+                s: {}
+            },
+            methods: {
+                //修改方法
+                Save: function () {
+                    var id = $("#Id").val();
+                    vm.s.SystemInfoId = id;
+                    alert(id)
+                    axios.post('http://localhost:8005/api/SysManagement/tbSystemInfoUpd', this.s).then((response) => { alert('修改成功'); $("#id").val(''); }).catch(function (response) { alert('修改失败') })
+                    location.reload()
+                },
+                //添加方法
+                AddItem: function () {
+
+                    axios.post('http://localhost:8005/api/SysManagement/tbSystemInfoAdd', this.s).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('失败') })
+                },
+            },
+
+        })
+        //查询
+        $(function () { getItem() })
+        function getItem() {
+            var SystemInfoName = $("#SystemInfoNames").val()
+            $.ajax({
+
+                url: 'http://localhost:8005/api/SysManagement/GettbSystemInfo',
+
+                type: "get",
+                data: { SystemInfoName: SystemInfoName },
+                dataType: 'json',
+                timeout: 3000,
+                success: function (result) {
+                    myViewModel.MenuList = result;
+                },
+                eroor: function () {
+                    alert('服务器忙')
+                }
+            })
+
+        }
+    </script>*@
+
 
 
 

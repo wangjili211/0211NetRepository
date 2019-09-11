@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LGK.FirstCoreApi.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -42,7 +45,10 @@ namespace LGK.FirstCoreApi.Controllers
         }
 
 
-        // DELETE api/values/5
+       /// <summary>
+       /// 删除
+       /// </summary>
+       /// <param name="id"></param>
         [HttpDelete]
         public void Delete(int id)
         {
