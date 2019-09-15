@@ -23,23 +23,23 @@ namespace LGK.FirstCore.Web.Controllers
             roleRepository = _roleRepository;
         }
 
-        //public JsonResult Adds(Role role)
-        //{
-        //    string jsonm = Newtonsoft.Json.JsonConvert.SerializeObject(role);
-        //    var result = HelperHttpClient.GetAll("post", "api/role", jsonm);
-        //    return Json(result);
-        //}
-
-        //public ActionResult AddRole()
-        //{
-        //    return View();
-        //}
-
         public JsonResult Adds(Role role)
         {
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(role);
             var result = HelperHttpClient.GetAll("post", "/api/Role", json);
             return Json(result);
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public int DeleteUser(int id)
+        {
+            var i = roleRepository.Delete(id);
+            return i;
         }
 
 
@@ -53,11 +53,6 @@ namespace LGK.FirstCore.Web.Controllers
         {
             return View();
         }
-
- 
-
-
-
 
         public Role UpdateRole(int Id)
         {
