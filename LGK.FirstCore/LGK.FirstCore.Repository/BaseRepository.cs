@@ -41,7 +41,7 @@ namespace LGK.FirstCore.Repository
             return EF.SaveChanges();
         }
 
-        public int Delete(object id)
+        public int Delete(int id)
         {
             ///删除操作实现
             var obj = Entities.Find(id);

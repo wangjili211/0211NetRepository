@@ -1,5 +1,4 @@
-﻿@using LGK.FirstCore.Model
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
@@ -16,7 +15,6 @@
     <input id="releasecontent" type="text" placeholder="请输入名称" />
     <button id="Button1" class="btn btn-primary btn-2g" onclick="getContent()">查询</button>
     <button class="btn btn-primary btn-2g" data-toggle="modal" data-target="#myModal">添加</button>
- 
 </div>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -52,56 +50,28 @@
 <div id="divstudents">
     <table class="table table-bordered">
         <thead>
-        <tr>
-            <td>ID</td>
-            <td>角色名称</td>
-            <td>角色爱好</td>
-            <td>操作</td>
-        </tr>
+            <tr>
+                <td>ID</td>
+                <td>角色名称</td>
+                <td>角色爱好</td>
+                <td>操作</td>
+            </tr>
         </thead>
         <tbody>
             <tr v-for="item in list">
-                <td><a href="javascript:void(0)" v-on:click="editMoney(item.roleId)">{{item.roleId}}</a></td>
-                @*<td>{{item.roleId}}</td>*@
+                <td>{{item.roleId}}</td>
                 <td>{{item.roleName}}</td>
                 <td>{{item.roleHappy}}</td>
+                @*<td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.Id)">删除</a>*@
                 <td>
-                    <a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.Id)">删除</a>
-                    <button class="btn btn-primary btn-2g" data-toggle="modal" data-target="#MoneyModal">修改</button>
+                    <div v-if="item.roleId!=''">                
+                        <a href="#" v-on:click="deleteUserById(item.roleId)">删除</a>
+                    </div>
+
                 </td>
             </tr>
         </tbody>
     </table>
-</div>
-<div class="modal fade" id="MoneyModal" tabindex="-1" role="dialog" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form name="moneyForm" role="form" novalidate class="form-validation">
-                <div class="modal-header">
-                    <h4 class="modal-title">
-                       
-                        <span v-if="!Role.roleId">修改</span>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" v-model="Role.roleId" />
-                    <div class="form-group">
-                        <label>名称</label>
-                        <input class="form-control" type="text" v-model="Role.roleName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>爱好</label>
-                        <input class="form-control" type="text" v-model="Role.roleHappy" required>
-                    </div>
-                   
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">@("Cancel")</button>
-                    <button type="button" class="btn btn-primary blue" v-on:click="saveMoney"><i class="fa fa-save"></i> <span>@("Save")</span></button>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
 
 
@@ -147,7 +117,21 @@
                             }
                             console.log(this.list)
                         });
-                    }
+                    },
+                    deleteUserById: function (roleId) {
+                         axios.delete("/role/DeleteUser?id="+roleId ).then((response) => {
+                            if (response.data > 0) {
+                                this.pagehandler();
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+            },
+           
                 }
             });
 

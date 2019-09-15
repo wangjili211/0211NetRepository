@@ -42,6 +42,18 @@ namespace LGK.FirstCore.Web.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public int DeleteUser(int id)
+        {
+            var i = roleRepository.Delete(id);
+            return i;
+        }
+
 
         public ActionResult Add()
         {

@@ -42,8 +42,7 @@
             roleName: "",
         },
         methods: {
-            AddAccount: function () {
-
+            AddAccount: function () 
                 var params = new URLSearchParams();
                 params.append("roleName", this.roleName)
                 axios.post('/role/Adds', params).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('添加失败') })
