@@ -77,28 +77,6 @@
 
 
 <script>
-    //var myViewModel = new Vue({
-    //    el: '#myView',
-    //    data: myModel,
-    //    methods: {
-    //        Delete(SystemInfoId) {
-    //            if (confirm("确认删除吗？")) {
-    //                alert(SystemInfoId)
-    //                this.$http.get('http://localhost:8005/api/SysManagement/tbSystemInfoDel/?SystemInfoId=' + SystemInfoId).then(result => {
-    //                    var result = result.body;
-    //                    if (result.code == 200) {
-
-    //                        alert('删除失败')
-    //                    }
-    //                    else{
-    //                        alert('删除成功')
-
-    //                        location.reload()
-    //                    }
-    //                })
-    //            }
-    //        },
-
             var vm = new Vue({
                 el: "#divstudents",
                 data: {
@@ -148,11 +126,12 @@
                         var params = new URLSearchParams();
                         params.append("roleName", this.roleName);
                         params.append("roleHappy", this.roleHappy);
-                        axios.post('/role/Adds', params).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('添加失败') })
+                        axios.post('/role/Adds', params).then((response) =>
+                        { alert('添加成功'); location.reload() }).catch(function (response)
+                        { alert('添加失败') })
                     }
                 }
-            });
-
+    });
 </script>
 
 @*-----------------------------------------------------------------------------------------------------------*@
@@ -176,7 +155,7 @@
             <button id="Button1" class="btn btn-info btn-2g" onclick="getItem()">查询</button>
             <button class="btn btn-info btn-2g" data-toggle="modal" data-target="#myModal">添加分类</button>
         </div>
-        <!-- 模态框（Modal） -->
+         模态框（Modal） 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -209,7 +188,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <button @click="AddItem()"> 添加</button>
+                                        <button v-on:click="AddItem()"> 添加</button>
                                         <button type="button" data-dismiss="modal">关闭</button>
                                     </td>
                                 </tr>
@@ -227,11 +206,8 @@
                     <td>操作</td>
                 </tr>
                 <tr v-for="item in MenuList">
-                    te
-                      <!--<td>{{item.SystemInfoId}}</td>-->
                     <td>{{item.SystemInfoParentId==1?"员工管理":item.SystemInfoParentId==2?"库存管理":item.SystemInfoParentId==3?"消息管理":item.SystemInfoParentId==4?"供应商管理":item.SystemInfoParentId==5?"入库管理":item.SystemInfoParentId==6?"发票管理":item.SystemInfoParentId==7?"报表管理":item.SystemInfoParentId==8?"采购订单管理":item.SystemInfoParentId==9?"订单管理":item.SystemInfoParentId==10?"仓库管理":item.SystemInfoParentId==11?"商品分类管理":"商品信息管理"}}</td>
-                    <!--<td>{{item.SystemInfoName}}</td>-->
-                    <td><a href="#" class="btn btn-info btn-2g" @click="Delete(item.SystemInfoId)">删除</a>
+                    <td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.SystemInfoId)">删除</a></td>
                 </tr>
             </table>
         </div>
