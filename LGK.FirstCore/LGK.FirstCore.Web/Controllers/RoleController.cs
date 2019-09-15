@@ -23,8 +23,6 @@ namespace LGK.FirstCore.Web.Controllers
             roleRepository = _roleRepository;
         }
 
-       
-
         public JsonResult Adds(Role role)
         {
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(role);
@@ -62,8 +60,9 @@ namespace LGK.FirstCore.Web.Controllers
             return i;
 
         }
-      
-
-      
+        public ActionResult UpdateRole()
+        {
+            return View();
+        }
     }
 }
