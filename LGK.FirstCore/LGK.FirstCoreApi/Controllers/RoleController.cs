@@ -21,7 +21,7 @@ namespace LGK.FirstCoreApi.Controllers
 
         private readonly IRoleRepository roleRepository;
         /// <summary>
-        /// 
+        ///构造函数注入
         /// </summary>
         /// <param name="_roleRepository"></param>
         public RoleController(IRoleRepository _roleRepository)
@@ -29,18 +29,7 @@ namespace LGK.FirstCoreApi.Controllers
             roleRepository = _roleRepository;
         }
 
-        /// <summary>
-        /// /
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        //[HttpPost]
-
-        //public int AddRole(Role entity)
-        //{
-        //    var i = roleRepository.Insert(entity);
-        //    return i;
-        //}
+       
 
         /// <summary>
         /// 删除
@@ -53,6 +42,7 @@ namespace LGK.FirstCoreApi.Controllers
             var i = roleRepository.Delete(id);
             return i;
         }
+
         /// <summary>
         /// /显示
         /// </summary>

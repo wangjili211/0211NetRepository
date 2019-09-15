@@ -25,6 +25,10 @@
                 <td><input type="text" v-model="roleName" /></td>
             </tr>
             <tr>
+                <td>角色爱好</td>
+                <td><input type="text" v-model="roleHobby" /></td>
+            </tr>
+            <tr>
                 <td>
                     <button v-on:click="AddAccount()">添加</button>
                     <button type="button" data-dismiss="modal"> 关闭</button>
@@ -40,13 +44,14 @@
         type: "post",
         data: {
             roleName: "",
+            roleHappy: ""
         },
         methods: {
-            AddAccount: function () 
+            AddAccount: function () {
                 var params = new URLSearchParams();
-                params.append("roleName", this.roleName)
+                params.append("roleName", this.roleName);
+                params.append("roleHappy", this.roleHappy);
                 axios.post('/role/Adds', params).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('添加失败') })
             }
         }
-    })
 </script>
