@@ -46,6 +46,7 @@
             </div>
         </div>
     </div>
+
 </div>
 <div id="divstudents">
     <table class="table table-bordered">
@@ -64,73 +65,105 @@
                 <td>{{item.roleHappy}}</td>
                 @*<td><a href="#" class="btn btn-info btn-2g" v-on:click="Delete(item.Id)">删除</a>*@
                 <td>
-                    <div v-if="item.roleId!=''">                
+                    <div v-if="item.roleId!=''">
                         <a href="#" v-on:click="deleteUserById(item.roleId)">删除</a>
-                    </div>
 
+                    </div>
+                    <button class="btn btn-primary btn-2g" data-toggle="modal" data-target="#MoneyModal">修改</button>
                 </td>
             </tr>
         </tbody>
     </table>
+
+</div>
+<div class="modal fade" id="MoneyModal" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form name="moneyForm" role="form" novalidate class="form-validation">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span v-if="moneyModel.id">编辑消费记录</span>
+                        <span v-if="!moneyModel.id">添加消费记录</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" v-model="moneyModel.id" />
+                    <div class="form-group">
+                        <label>日期</label>
+                        <input class="form-control" type="text" v-model="moneyModel.date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>金额</label>
+                        <input class="form-control" type="text" v-model="moneyModel.moeny" required>
+                    </div>
+                    <div class="form-group">
+                        <label>描述</label>
+                        <input class="form-control" type="text" v-model="moneyModel.desc" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@("取消")</button>
+                    <button type="button" class="btn btn-primary blue" v-on:click="saveMoney"><i class="fa fa-save"></i> <span>@("保存")</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 
-
 <script>
-            var vm = new Vue({
-                el: "#divstudents",
-                data: {
-                    list: []
-                },
-                mounted() {
-                    this.pagehandler();
-                },
-                methods: {
-                    pagehandler: function () {
-                        axios.get("http://localhost:52141/api/Role").then((response) => {
-                            //console.table(response.data)
-                            this.list = []
-                            for (var i = 0; i < response.data.length; i++) {
-                                this.list.push(response.data[i]);
-                            }
-                            console.log(this.list)
-                        });
-                    },
-                    deleteUserById: function (roleId) {
-                         axios.delete("/role/DeleteUser?id="+roleId ).then((response) => {
-                            if (response.data > 0) {
-                                this.pagehandler();
-                            }
-                        },
-                        (response) => {
-                            alert(response.status);
-                        }
-                    ).catch(function (response) {
-                        alert(response);
-                    });
-            },
-           
-                }
-            });
-
-            var vm = new Vue({
-                el: "#AccountAdd",
-                type: "post",
-                data: {
-                    roleName: "",
-                    roleHappy: ""
-                },
-                methods: {
-                    AddAccount: function () {
-
-                        var params = new URLSearchParams();
-                        params.append("roleName", this.roleName);
-                        params.append("roleHappy", this.roleHappy);
-                        axios.post('/role/Adds', params).then((response) =>
-                        { alert('添加成功'); location.reload() }).catch(function (response)
-                        { alert('添加失败') })
+    var vm = new Vue({
+        el: "#divstudents",
+        data: {
+            list: []
+        },
+        mounted() {
+            this.pagehandler();
+        },
+        methods: {
+            pagehandler: function () {
+                axios.get("http://localhost:52141/api/Role").then((response) => {
+                    //console.table(response.data)
+                    this.list = []
+                    for (var i = 0; i < response.data.length; i++) {
+                        this.list.push(response.data[i]);
                     }
-                }
+                    console.log(this.list)
+                });
+            },
+            deleteUserById: function (roleId) {
+                axios.delete("/role/DeleteUser?id=" + roleId).then((response) => {
+                    if (response.data > 0) {
+                        this.pagehandler();
+                    }
+                },
+                    (response) => {
+                        alert(response.status);
+                    }
+                ).catch(function (response) {
+                    alert(response);
+                });
+            },
+
+        }
+    });
+
+    var vm = new Vue({
+        el: "#AccountAdd",
+        type: "post",
+        data: {
+            roleName: "",
+            roleHappy: ""
+        },
+        methods: {
+            AddAccount: function () {
+
+                var params = new URLSearchParams();
+                params.append("roleName", this.roleName);
+                params.append("roleHappy", this.roleHappy);
+                axios.post('/role/Adds', params).then((response) => { alert('添加成功'); location.reload() }).catch(function (response) { alert('添加失败') })
+            }
+        }
     });
 </script>
 
@@ -155,7 +188,7 @@
             <button id="Button1" class="btn btn-info btn-2g" onclick="getItem()">查询</button>
             <button class="btn btn-info btn-2g" data-toggle="modal" data-target="#myModal">添加分类</button>
         </div>
-         模态框（Modal） 
+         模态框（Modal）
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
