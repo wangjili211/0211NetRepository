@@ -24,6 +24,7 @@ namespace LGK.FirstCore.Web.Controllers
         }
         public IActionResult Index()
         {
+
             return View();
         }
     }
