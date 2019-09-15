@@ -34,5 +34,20 @@ namespace LGK.FirstCore.Model
         public string GoalSources      { get; set; }//数据来源
         public int          FileId           { get; set; }//文件ID
         public DateTime CreateTime { get; set; }//创建时间
+
+  
+        public int Business_State { get; set; }// 待办状态 待办已办
+
+      
+        public int FeedbackId { get; set; }// 进度百分比
+
+     
+        public int Goal_DutyUserId { get; set; }// 责任人
+
+    
+        public int Goal_DutyCommanyId { get; set; }// 责任单位
+
+        public int Goal_ParentId { get; set; }// 父级节点
+
     }
 }
